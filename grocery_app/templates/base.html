@@ -13,10 +13,17 @@
             {% endfor %}
             <nav>
                 <a href="/">Home</a>
-                <div>
-                    <a href="/new_store">New Store</a>
-                    <a href="/new_item">New Item</a>
-                </div>
+                {% if  current_user.is_authenticated %}
+                  <div>
+                      <a href="/new_store">New Store</a>
+                      <a href="/new_item">New Item</a>
+                  </div>
+                {% else %}
+                  <div>
+                      <a href="{{ url_for('auth.login') }}">Sign In</a>
+                      <a href="{{ url_for('auth.signup') }}">Sign Up</a>
+                  </div>
+                {% endif %}
             </nav>
             {% block content %}{% endblock %}
         </div>
