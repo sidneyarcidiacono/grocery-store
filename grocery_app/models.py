@@ -49,3 +49,10 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(160), nullable=False)
+
+
+shopping_list_table = db.Table(
+    "shopping_list",
+    db.Column("item_id", db.Integer, db.ForeignKey("grocery_item.id")),
+    db.Column("user_id", db.Integer, db.ForeignKey("user.id")),
+)
